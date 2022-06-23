@@ -1,5 +1,4 @@
 # 💸 HỆ THỐNG ĐẤU GIÁ TỰ ĐỘNG - AUCTION MWG
-# 💸 HỆ THỐNG ĐẤU GIÁ TỰ ĐỘNG - AUCTION MWG
 # 🧑‍💻	CÔNG NGHỆ VÀ KỸ THUẬT ÁP DỤNG TRONG DỰ ÁN
 - Web server: .NET CORE (5.0), Razor engine
 - Hệ quản trị CSDL: MS SQL server
