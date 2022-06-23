@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Auction.Models.Item>
+
+
+
+<h1>Index1</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Isaccept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceBuyNow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceAuction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCategoryNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUserNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageItems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isaccept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceBuyNow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Auction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceAuction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoryNavigation.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUserNavigation.Username)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
