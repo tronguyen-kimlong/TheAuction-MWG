@@ -12,11 +12,13 @@ namespace Auction.Models
     {
         public User()
         {
+            AutoAuctions = new HashSet<AutoAuction>();
             BlockAccounts = new HashSet<BlockAccount>();
             FavouriteItems = new HashSet<FavouriteItem>();
             HistoryBuys = new HashSet<HistoryBuy>();
             HistorySearches = new HashSet<HistorySearch>();
             Items = new HashSet<Item>();
+            PaidItems = new HashSet<PaidItem>();
             PaymentsAuctionIdUserBuyerNavigations = new HashSet<PaymentsAuction>();
             PaymentsAuctionIdUserSellerNavigations = new HashSet<PaymentsAuction>();
             PaymentsPostItems = new HashSet<PaymentsPostItem>();
@@ -54,6 +56,8 @@ namespace Auction.Models
         [Column("wallet", TypeName = "money")]
         public decimal Wallet { get; set; }
 
+        [InverseProperty(nameof(AutoAuction.IdUserNavigation))]
+        public virtual ICollection<AutoAuction> AutoAuctions { get; set; }
         [InverseProperty(nameof(BlockAccount.IdUserNavigation))]
         public virtual ICollection<BlockAccount> BlockAccounts { get; set; }
         [InverseProperty(nameof(FavouriteItem.IdUserNavigation))]
@@ -64,6 +68,8 @@ namespace Auction.Models
         public virtual ICollection<HistorySearch> HistorySearches { get; set; }
         [InverseProperty(nameof(Item.IdUserNavigation))]
         public virtual ICollection<Item> Items { get; set; }
+        [InverseProperty(nameof(PaidItem.IdUserNavigation))]
+        public virtual ICollection<PaidItem> PaidItems { get; set; }
         [InverseProperty(nameof(PaymentsAuction.IdUserBuyerNavigation))]
         public virtual ICollection<PaymentsAuction> PaymentsAuctionIdUserBuyerNavigations { get; set; }
         [InverseProperty(nameof(PaymentsAuction.IdUserSellerNavigation))]

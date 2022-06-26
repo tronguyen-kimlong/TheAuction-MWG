@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body style="background-color:red">
+    <div style="width:700px">
+        @{
+            if (1 == 1)
+            {
+                <h1> hifdhi</h1>
+            }
+            else
+            {
+                 @RenderBody()
+            }
+        }
+        @RenderBody()
+    </div>
+</body>
+</html>
