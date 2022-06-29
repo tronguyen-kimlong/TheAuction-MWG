@@ -1,0 +1,12 @@
+﻿@{
+    string alreadyUser = TempData["AlreadyUser"] as string;
+}
+
+<partial name="~/Views/Shared/Form/_BeginForm.cshtml" />
+    <form asp-action="CreateMultiple">
+        <input type="text" name="headUser" placeholder="Enter head user"/>
+        <input type="number" name="numBegin" placeholder="Enter number begin"/>
+        <input type="number" name="numEnd" placeholder="Enter number end" />
+        <input type="submit" value="Create" />
+    </form>
+<partial name="~/Views/Shared/Form/_EndForm.cshtml" />

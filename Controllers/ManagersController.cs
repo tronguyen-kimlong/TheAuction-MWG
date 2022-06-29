@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Auction.Data;
 using Auction.Models;
+using Auction.Libraries.HashPassword;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Auction.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class ManagersController : Controller
     {
         private readonly AuctionContext _context;
@@ -58,9 +61,22 @@ namespace Auction.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(manager);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // encript password
+                var hashPassword = new HashPassword();
+                string encriptPass = hashPassword.EncryptString(manager.Password);
+                manager.Password = encriptPass;
+                // checking the user already in database yet!
+                var alreadyUser = await _context.Managers.FirstOrDefaultAsync(
+                    user => user.Username == manager.Username);
+                if (alreadyUser == null)
+                {
+                    _context.Add(manager);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+
+                TempData["alreadyUser"] = "The username " + manager.Username + " already exists";
+                
             }
             return View(manager);
         }
@@ -144,10 +160,41 @@ namespace Auction.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public  IActionResult CreateMultiple()
+        {
+            return View();
+        }
+        [HttpPost, ActionName("CreateMultiple")]
+        public async Task<IActionResult> CreateMultipleConfirmed(string headUser, int numBegin, int numEnd)
+        {
+            
+            for(int i = numBegin; i <= numEnd; i ++)
+            {
+                // create new user
+                string newUser = headUser + i.ToString();
+                // checking the user already exits yet?
+                if (!ManagerExists(newUser))
+                {
+                    Manager manager = new Manager();
+                    manager.Username = newUser;
+                    // hash password 
+                    var hashPassword = new HashPassword();
+                    string encryptPass = hashPassword.EncryptString(newUser);
+                    manager.Password = encryptPass;
+                    _context.Add(manager);
+                    await _context.SaveChangesAsync();
+                }
+                TempData["alreadyUser"] = "The user already " + newUser + " exists ";
+            }
+            return View();  
+        }
+
 
         private bool ManagerExists(string id)
         {
             return _context.Managers.Any(e => e.Username == id);
         }
+       
     }
 }

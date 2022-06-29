@@ -40,8 +40,8 @@ namespace Auction.Controllers
                 if(password == decryptPass)
                 {
                     var claims = new List<Claim>();
-                    claims.Add(new Claim("username", username)); 
-                    
+                    claims.Add(new Claim("username", username));
+                    claims.Add(new Claim("Role", manager.Roles));
                     claims.Add(new Claim(ClaimTypes.Role, manager.Roles));
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);

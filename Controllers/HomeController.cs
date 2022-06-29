@@ -24,7 +24,7 @@ namespace Auction.Controllers
         }
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public IActionResult Index()
         {
             //var hashPassword = new HashPassword();
@@ -45,7 +45,7 @@ namespace Auction.Controllers
             return View(items);
 
         }
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public IActionResult Index2()
         {
             var items = _context.Items.ToList();

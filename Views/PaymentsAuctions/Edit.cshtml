@@ -1,0 +1,61 @@
+﻿@model Auction.Models.PaymentsAuction
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>PaymentsAuction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="IdUserBuyer" class="control-label"></label>
+                <select asp-for="IdUserBuyer" class="form-control" asp-items="ViewBag.IdUserBuyer"></select>
+                <span asp-validation-for="IdUserBuyer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUserSeller" class="control-label"></label>
+                <select asp-for="IdUserSeller" class="form-control" asp-items="ViewBag.IdUserSeller"></select>
+                <span asp-validation-for="IdUserSeller" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountBankBuyer" class="control-label"></label>
+                <input asp-for="AccountBankBuyer" class="form-control" />
+                <span asp-validation-for="AccountBankBuyer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountBankSeller" class="control-label"></label>
+                <input asp-for="AccountBankSeller" class="form-control" />
+                <span asp-validation-for="AccountBankSeller" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label"></label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

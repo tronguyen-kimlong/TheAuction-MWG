@@ -8,14 +8,13 @@
 
 <h4>Manager</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<partial name="~/Views/Shared/Form/_BeginForm.cshtml" />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Username" />
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                
+                <input type="hidden" asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,8 +36,7 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
+<partial name="~/Views/Shared/Form/_EndForm.cshtml" />
 
 <div>
     <a asp-action="Index">Back to List</a>

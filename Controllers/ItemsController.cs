@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Auction.Data;
 using Auction.Models;
-
+using Microsoft.AspNetCore.Authorization;
+//using System.Web.Script.Serialization;
 namespace Auction.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class ItemsController : Controller
     {
         private readonly AuctionContext _context;
@@ -158,9 +160,53 @@ namespace Auction.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> ApproveItems()
+        {
+            var auctionContext = _context.Items.Include(i => i.IdCategoryNavigation).Include(i => i.IdUserNavigation);
+            return View(await auctionContext.ToListAsync());
+        }
+        public async Task<IActionResult> StatisticalCategoryItem()
+        {
+            //TempData["data"] = new int[] { 2, 6, 5 };
+            //TempData["labels"] = new string[] { "jan", "july", "may" };
+
+            //var query =  _context.Items
+
+            //    .Where(w => w.IsAccept == false)
+            //    .GroupBy(w => w.IdCategory)
+            //    .Select(w => new {category = w.Key, count = w.Count()}).ToArray();
+
+            var query = from item in _context.Items
+                        join cate in _context.Categories on item.IdCategory equals cate.Id into total
+                        from x in total.DefaultIfEmpty()
+
+                        select new { item.IdUser };
+                        
+            var qq = query.GroupBy(w => w.IdUser).Select(w => new {
+                iduser = w.Key, count = w.Count()}).ToArray();
+
+            int[] num = new int[qq.Count()];
+            string[] array = new string[qq.Count()];
+            for(int j = 0; j < qq.Length; j++)
+            {
+                var item = qq[j];
+                Console.WriteLine(item);
+                array[j] = item.iduser;
+                num[j] = item.count;
+            }
+
+            
+            TempData["data"] = num;
+            TempData["labels"] = array;
+
+
+
+            return View();
+        }
         private bool ItemExists(int id)
         {
             return _context.Items.Any(e => e.Id == id);
         }
+        
     }
 }
