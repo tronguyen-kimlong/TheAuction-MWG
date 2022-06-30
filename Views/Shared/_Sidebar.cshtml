@@ -1,9 +1,18 @@
 ﻿@{
     string _display = "none";
+    string _displayMod = "none";
     foreach (var item in User.Claims)
+    {
         if (item.Type == "Role" && item.Value == "admin")
+        {
             _display = "block";
-
+            _displayMod = "block";
+        }
+        if(item != null)
+        {
+            _displayMod = "block";
+        }
+    }
 }
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -30,99 +39,99 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Common Manager 
-    </div>
 
+    <div style="display:@_displayMod">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Common Manager 
+        </div>
+        <!-- Nav Item - Report Categories of Account Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Categories"
+                aria-expanded="true" aria-controls="Categories">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Categories</span>
+            </a>
+            <div id="Categories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+               
+                    <a class="collapse-item" asp-controller="Categories" asp-action="Index">List View</a>
+                    <a class="collapse-item" asp-controller="Categories" asp-action="Create">Create</a>
+
+                </div>
+            </div>
+        </li>  
+        <!-- Nav Item - Report Packages of Account Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Packages"
+                aria-expanded="true" aria-controls="Packages">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Packages</span>
+            </a>
+            <div id="Packages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+               
+                    <a class="collapse-item" asp-controller="Packages" asp-action="Index">List View</a>
+                    <a class="collapse-item" asp-controller="Packages" asp-action="Create">Create</a>
+
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - ApprovalItems of Account Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ApprovalItems"
+                aria-expanded="true" aria-controls="ApprovalItems">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>ApprovalItems</span>
+            </a>
+            <div id="ApprovalItems" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+               
+                    <a class="collapse-item" asp-controller="ApprovalItems" asp-action="Index">List View</a>
+                    <a class="collapse-item" asp-controller="ApprovalItems" asp-action="Create">Create</a>
+
+                </div>
+            </div>
+        </li>
     
-    <!-- Nav Item - Report Categories of Account Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Categories"
-            aria-expanded="true" aria-controls="Categories">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Categories</span>
-        </a>
-        <div id="Categories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+        <!-- Nav Item - BlockAccounts of Account Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#BlockAccounts"
+                aria-expanded="true" aria-controls="BlockAccounts">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>BlockAccounts</span>
+            </a>
+            <div id="BlockAccounts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
                
-                <a class="collapse-item" asp-controller="Categories" asp-action="Index">List View</a>
-                <a class="collapse-item" asp-controller="Categories" asp-action="Create">Create</a>
+                    <a class="collapse-item" asp-controller="BlockAccounts" asp-action="Index">List View</a>
+                    <a class="collapse-item" asp-controller="BlockAccounts" asp-action="Create">Create</a>
 
+                </div>
             </div>
-        </div>
-    </li>  
-    <!-- Nav Item - Report Packages of Account Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Packages"
-            aria-expanded="true" aria-controls="Packages">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Packages</span>
-        </a>
-        <div id="Packages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-               
-                <a class="collapse-item" asp-controller="Packages" asp-action="Index">List View</a>
-                <a class="collapse-item" asp-controller="Packages" asp-action="Create">Create</a>
-
-            </div>
-        </div>
-    </li>
-    <!-- Nav Item - ApprovalItems of Account Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ApprovalItems"
-            aria-expanded="true" aria-controls="ApprovalItems">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>ApprovalItems</span>
-        </a>
-        <div id="ApprovalItems" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-               
-                <a class="collapse-item" asp-controller="ApprovalItems" asp-action="Index">List View</a>
-                <a class="collapse-item" asp-controller="ApprovalItems" asp-action="Create">Create</a>
-
-            </div>
-        </div>
-    </li>
-    
-    <!-- Nav Item - BlockAccounts of Account Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#BlockAccounts"
-            aria-expanded="true" aria-controls="BlockAccounts">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>BlockAccounts</span>
-        </a>
-        <div id="BlockAccounts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-               
-                <a class="collapse-item" asp-controller="BlockAccounts" asp-action="Index">List View</a>
-                <a class="collapse-item" asp-controller="BlockAccounts" asp-action="Create">Create</a>
-
-            </div>
-        </div>
-    </li>
+        </li>
    
-     <!-- Nav Item - statistical Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#statistical"
-            aria-expanded="true" aria-controls="statistical">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Statistical</span>
-        </a>
-        <div id="statistical" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+         <!-- Nav Item - statistical Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#statistical"
+                aria-expanded="true" aria-controls="statistical">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Statistical</span>
+            </a>
+            <div id="statistical" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
                
-                <a class="collapse-item" asp-controller="Statistical" asp-action="Items"> Statistical Items</a>
-                <a class="collapse-item" asp-controller="Statistical" asp-action="Users"> Statistical Users</a>
-                <a class="collapse-item" asp-controller="Statistical" asp-action="Managers"> Statistical Manager Account</a>
+                    <a class="collapse-item" asp-controller="Statistical" asp-action="Items"> Statistical Items</a>
+                    <a class="collapse-item" asp-controller="Statistical" asp-action="Users"> Statistical Users</a>
+                    <a class="collapse-item" asp-controller="Statistical" asp-action="Managers"> Statistical Manager Account</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
 
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+    </div>
     <!-- Heading -->
     
    <!----------------------------------------------------------------------->
