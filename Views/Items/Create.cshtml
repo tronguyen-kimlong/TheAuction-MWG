@@ -8,8 +8,7 @@
 
 <h4>Item</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<partial name="~/Views/Shared/Form/_BeginForm.cshtml" />
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -64,9 +63,7 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
-
+<partial name="~/Views/Shared/Form/_EndForm.cshtml" />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

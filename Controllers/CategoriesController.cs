@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Auction.Data;
 using Auction.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace Auction.Controllers
 {
@@ -146,7 +149,32 @@ namespace Auction.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[2] { new DataColumn("Id"),
+                                        new DataColumn("Name")
+                                         });
 
+            var category = from cate in _context.Categories
+                            select cate;
+
+            foreach (var customer in category)
+            {
+                dt.Rows.Add(customer.Id, customer.Name);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
+        }
         private bool CategoryExists(int id)
         {
             return _context.Categories.Any(e => e.Id == id);

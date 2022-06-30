@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<partial name="~/Views/Shared/Table/_BeginTable.cshtml" />
     <thead>
         <tr>
             <th>
@@ -80,4 +80,4 @@
         </tr>
 }
     </tbody>
-</table>
+<partial name="~/Views/Shared/Table/_EndTable.cshtml" />

@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+    <a asp-action="Export">Export to Excel</a>
+</p>
+<partial name="~/Views/Shared/Table/_BeginTable.cshtml" />
     <thead>
         <tr>
             <th>
@@ -38,4 +38,4 @@
         </tr>
 }
     </tbody>
-</table>
+<partial name="~/Views/Shared/Table/_EndTable.cshtml" />

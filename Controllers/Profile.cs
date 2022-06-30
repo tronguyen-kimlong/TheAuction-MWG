@@ -1,5 +1,6 @@
 ﻿using Auction.Data;
 using Auction.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Auction.Controllers
 {
+    [Authorize]
     public class Profile : Controller
     {
         private readonly AuctionContext _context;

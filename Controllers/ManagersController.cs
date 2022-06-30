@@ -9,6 +9,9 @@ using Auction.Data;
 using Auction.Models;
 using Auction.Libraries.HashPassword;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace Auction.Controllers
 {
@@ -190,7 +193,35 @@ namespace Auction.Controllers
             }
             return View();  
         }
+        public IActionResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[4] { new DataColumn("Username"),
+                                        new DataColumn("Email"),
+                                        new DataColumn("Phone"),
+                                        new DataColumn("Password"),
 
+                                         });
+
+            var manager = from mn in _context.Managers
+                           select mn;
+
+            foreach (var customer in manager)
+            {
+                dt.Rows.Add(customer.Username, customer.Email, customer.Phone, customer.Password);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
+        }
 
         private bool ManagerExists(string id)
         {

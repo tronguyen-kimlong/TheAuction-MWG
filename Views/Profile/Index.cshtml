@@ -9,11 +9,11 @@
 <div style="margin:auto; ">
     <h4>Profile</h4>
     <hr />
-     <div>
+     <div style="margin-left:450px">
         <img class="img-profile rounded-circle" heigh="300px" width= "300px"
                         src="~/img/undraw_profile.svg">
     </div>
-    <dl class="row" style="margin:auto;">
+    <dl class="row" style="margin-left:450px">
        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -40,8 +40,4 @@
         </dd>
     </dl>
    
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Username">Edit Profile</a>
-    
 </div>
