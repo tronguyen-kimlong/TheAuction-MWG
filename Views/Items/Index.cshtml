@@ -18,7 +18,10 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayNameFor(model => model.IdCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUser)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsAccept)
@@ -33,15 +36,7 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             
-            <th>
-                @Html.DisplayNameFor(model => model.PriceBuyNow)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Auction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceAuction)
-            </th>
+           
            
            
         </tr>
@@ -59,7 +54,10 @@
                @Html.DisplayFor(hi => item.Id)
            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(hi => item.IdCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(hi => item.IdUser)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAccept)
@@ -74,15 +72,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
            
-            <td>
-                @Html.DisplayFor(modelItem => item.PriceBuyNow)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Auction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PriceAuction)
-            </td>
+           
            
             
         </tr>

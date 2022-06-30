@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "StatisticalCategoryItem";
+    //string[] hi = TempData["labels"] as string[];
+    string[] month = TempData["labels"] as string[];
+    int[] data = TempData["data"] as int[];
+}
+
+<h1 class="text-center"></h1>
+
+<div style="margin:auto">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User Active and Blocked</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-pie pt-8">
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <hr />
+            <div>
+                <p>Noted:</p>
+                <p style="background-color:#4e73df; color:white; text-align:center">Active: blue</p>
+                <p style="background-color:#1cc88a; color:white; text-align:center">Blocked: green</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/vendor/chart.js/Chart.min.js"></script>
+<script>
+        var labels = [];
+        var data = [];
+          
+        var stringArray = @Html.Raw(Json.Serialize(month));
+         console.log(stringArray)     
+        var numArray = @Html.Raw(Json.Serialize(data));
+         console.log(numArray)
+        labels = stringArray;
+        data = numArray;
+
+
+         // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = (
+          labels = ["Direct", "Referral", "Social"],
+          data = [55, 30, 15]
+        ) => new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+              hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+          },
+          options: {
+            maintainAspectRatio: false,
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: '#dddfeb',
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: false,
+              caretPadding: 10,
+            },
+            legend: {
+              display: false
+            },
+            cutoutPercentage: 80,
+          },
+        });
+        // this function to access.
+        myPieChart(
+          labels ,
+          data 
+        )
+ </script>

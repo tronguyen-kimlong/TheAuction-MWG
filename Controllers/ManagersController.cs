@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Auction.Controllers
 {
     [Authorize(Roles ="admin")]
+    
     public class ManagersController : Controller
     {
         private readonly AuctionContext _context;
